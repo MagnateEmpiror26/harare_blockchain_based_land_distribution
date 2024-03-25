@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deed of Transfer System</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #333;
+    }
+    input[type="text"],
+    input[type="number"] {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    button {
+        padding: 10px 20px;
+        border: none;
+        background-color: #4CAF50;
+        color: #fff;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+    .output {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #f2f2f2;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Deed of Transfer System</h1>
+    <div class="form-group">
+        <label for="deedId">Deed ID:</label>
+        <input type="text" id="deedId" placeholder="Enter Deed ID...">
+    </div>
+    <div class="form-group">
+        <label for="location">Location:</label>
+        <input type="text" id="location" placeholder="Enter Location...">
+    </div>
+    <div class="form-group">
+        <label for="owner">Owner:</label>
+        <input type="text" id="owner" placeholder="Enter Owner...">
+    </div>
+    <div class="form-group">
+        <label for="size">Land Size:</label>
+        <input type="number" id="size" placeholder="Enter Land Size...">
+    </div>
+    <div class="form-group">
+        <label for="address">Address:</label>
+        <input type="text" id="address" placeholder="Enter Address...">
+    </div>
+    <div class="form-group">
+        <label for="district">District:</label>
+        <input type="text" id="district" placeholder="Enter District...">
+    </div>
+    <div class="form-group">
+        <label for="planNumber">General Plan Number:</label>
+        <input type="text" id="planNumber" placeholder="Enter General Plan Number...">
+    </div>
+    <button onclick="submitForm()">Submit</button>
+
+    <div class="output" id="output">
+        <h2>Deed Information</h2>
+        <p id="deedInfo">-</p>
+    </div>
+</div>
+
+<script>
+    function submitForm() {
+        // Retrieve input values
+        var deedId = document.getElementById("deedId").value;
+        var location = document.getElementById("location").value;
+        var owner = document.getElementById("owner").value;
+        var size = document.getElementById("size").value;
+        var address = document.getElementById("address").value;
+        var district = document.getElementById("district").value;
+        var planNumber = document.getElementById("planNumber").value;
+
+        // Prepare deed information
+        var deedInfo = "Deed ID: " + deedId + "<br>";
+        deedInfo += "Location: " + location + "<br>";
+        deedInfo += "Owner: " + owner + "<br>";
+        deedInfo += "Land Size: " + size + "<br>";
+        deedInfo += "Address: " + address + "<br>";
+        deedInfo += "District: " + district + "<br>";
+        deedInfo += "General Plan Number: " + planNumber + "<br>";
+
+        // Display deed information
+        document.getElementById("deedInfo").innerHTML = deedInfo;
+    }
+</script>
+
+</body>
+</html>
