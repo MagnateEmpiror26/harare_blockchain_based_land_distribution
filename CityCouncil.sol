@@ -1,54 +1,24 @@
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "./LandRegistry.sol";
-
 contract CityCouncil {
-    address public landRegistryAddress;
     address public owner;
+    mapping(uint256 => address) public landOwners;
 
-    modifier onlyOwner() {
-        require(msg.sender == owner, "Only the owner can perform this action");
-        _;
-    }
-
-    constructor(address _landRegistryAddress) {
-        landRegistryAddress = _landRegistryAddress;
+    constructor() {
         owner = msg.sender;
     }
 
-    function registerLand(
-        bytes32 recordId,
-        string memory deedId,
-        uint256 landSize,
-        string memory landAddress,
-        string memory district,
-        string memory generalPlanNumber,
-        address owner,
-        bool verified
-    ) external onlyOwner {
-        LandRegistry landRegistry = LandRegistry(landRegistryAddress);
-        landRegistry.registerLand(recordId, deedId, landSize, landAddress, district, generalPlanNumber, owner, verified);
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Only owner can perform this action");
+        _;
     }
 
-    function verifyLand(bytes32 recordId) external onlyOwner {
-        LandRegistry landRegistry = LandRegistry(landRegistryAddress);
-        landRegistry.verifyLand(recordId);
+    function grantLandOwnership(uint256 landId, address newOwner) public onlyOwner {
+        landOwners[landId] = newOwner;
     }
 
-    function issueDeedOfGrant(
-        bytes32 recordId,
-        string memory deedId,
-        uint256 landSize,
-        string memory landAddress,
-        string memory district,
-        string memory generalPlanNumber,
-        address owner,
-        bool verified
-    ) external onlyOwner {
-        LandRegistry landRegistry = LandRegistry(landRegistryAddress);
-        landRegistry.registerLand(recordId, deedId, landSize, landAddress, district, generalPlanNumber, owner, verified);
-        // Additional logic for issuing deed of grant
+    function transferOwnership(address newOwner) public onlyOwner {
+        owner = newOwner;
     }
-
-    
 }
